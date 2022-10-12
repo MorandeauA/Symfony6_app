@@ -1,0 +1,19 @@
+{
+    "intelephense.completion.fullyQualifyGlobalConstantsAndFunctions": true,
+    "intelephense.references.exclude": [],
+    "intelephense.files.associations": [
+    
+        "*.php",
+        "*.phtml"
+    ],
+    "intelephense.files.exclude": [
+        "**/.git/**",
+        "**/.svn/**",
+        "**/.hg/**",
+        "**/CVS/**",
+        "**/.DS_Store/**",
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/.history/**"
+    ]
+}
