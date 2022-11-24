@@ -1,0 +1,51 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Liste des animaux{% endblock %}
+
+{% block PageTitle %}Liste des animaux{% endblock %}
+
+{% block body %}
+    <div class="row">
+        {% for animal in animals %}
+            <div class="card" style="width: 17rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ animal.name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ animal.espece }}</h6>
+                    <p class="card-text">Age : {{ animal.age }}</p>
+                    <p class="card-text">Couleur : {{ animal.color }}</p>
+{#                    {% if is_granted('ROLE_ADMIN') %}#}
+                        <a href="{{ path('animal.delete', {id: animal.id}) }}" class="card-link">
+                            <i class="fa-solid fa-user-xmark"></i>
+                        </a>
+                        <a href="{{ path('animal.edit', {id: animal.id}) }}" class="card-link">
+                            <i class="fas fa-user-edit"></i>
+                        </a>
+{#                    {% endif %}#}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% if isPaginated is defined and isPaginated  %}
+        <div class="row mt-3">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {%  if page != 1 %}
+                        <li class="page-item">
+                            <a href="{{ path('app_animal', {page: page-1, nbre: nbre}) }}" class="page-link">Previous</a>
+                        </li>
+                    {% endif %}
+                    {% for i in range(1, nbPage) %}
+                        <li class="page-item">
+                            <a href="{{ path('app_animal', {page: i, nbre: nbre}) }}" class="page-link">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                    {%  if page != nbPage %}
+                        <li class="page-item">
+                            <a href="{{ path('app_animal', {page: page+1, nbre: nbre}) }}" class="page-link">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    {% endif %}
+{% endblock %}
